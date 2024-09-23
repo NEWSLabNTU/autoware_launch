@@ -45,7 +45,8 @@
   <arg name="traffic_light_recognition/enable_fine_detection" default="true" description="enable traffic light fine detection"/>
   <!-- Auto mode setting-->
   <arg name="enable_all_modules_auto_mode" default="false" description="enable all module's auto mode"/>
-
+  <!-- Auto mode setting-->
+  <arg name="pose_source" default="ndt" description="component for localization"/>
   <!-- Global parameters -->
   <group scoped="false">
     <include file="$(find-pkg-share global_parameter_loader)/launch/global_params.launch.py">
@@ -89,7 +90,9 @@
 
   <!-- Localization -->
   <group if="$(var launch_localization)">
-    <include file="$(find-pkg-share autoware_launch)/launch/components/tier4_localization_component.launch.xml"/>
+    <include file="$(find-pkg-share autoware_launch)/launch/components/tier4_localization_component.launch.xml"> 
+      <arg name="pose_source" value="$(var pose_source)"/>
+    </include>
   </group>
 
   <!-- Perception -->
