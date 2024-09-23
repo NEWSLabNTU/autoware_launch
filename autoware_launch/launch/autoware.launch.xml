@@ -128,5 +128,6 @@
       if="$(var rviz)"
       respawn="$(var rviz_respawn)"
     />
+    <node name="base_link_tf" pkg="tf2_ros" exec="static_transform_publisher" args="--frame-id /base_link --child-frame-id /imu_link"/>
   </group>
 </launch>
