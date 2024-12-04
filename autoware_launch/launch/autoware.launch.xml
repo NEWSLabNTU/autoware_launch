@@ -4,7 +4,13 @@
   <arg name="map_path" description="point cloud and lanelet2 map directory path"/>
   <arg name="vehicle_model" default="sample_vehicle" description="vehicle model name"/>
   <arg name="sensor_model" default="sample_sensor_kit" description="sensor model name"/>
-  <arg name="pointcloud_container_name" default="pointcloud_container"/>
+
+  <arg name="pointcloud_container_node_name" default="pointcloud_container"/>
+  <arg name="pointcloud_container_name" default="/$(var pointcloud_container_node_name)"/>
+  
+  <arg name="lidar_container_node_name" default="lidar_container"/>
+  <arg name="lidar_container_name" default="/$(var lidar_container_node_name)"/>
+
   <arg name="data_path" default="$(env HOME)/autoware_data" description="packages data and artifacts directory path"/>
 
   <!-- launch module preset -->
@@ -58,7 +64,13 @@
   <!-- Pointcloud container -->
   <include file="$(find-pkg-share autoware_launch)/launch/pointcloud_container.launch.py">
     <arg name="use_multithread" value="true"/>
-    <arg name="container_name" value="$(var pointcloud_container_name)"/>
+    <arg name="container_name" value="$(var pointcloud_container_node_name)"/>
+  </include>
+
+  <!-- LiDAR container -->
+  <include file="$(find-pkg-share autoware_launch)/launch/pointcloud_container.launch.py">
+    <arg name="use_multithread" value="true"/>
+    <arg name="container_name" value="$(var lidar_container_node_name)"/>
   </include>
 
   <!-- Vehicle -->
