@@ -35,7 +35,7 @@
     # TF
     tf_gnss_frame:
       parent: "base_link"
-      child: "imu_link"
+      child: "gnss_link"
 
     # Origin of GNSS coordinates (ECEF to ENU)
     ecef_base_pos:
